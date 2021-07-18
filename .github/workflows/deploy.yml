@@ -1,16 +1,19 @@
 name: deploy python function to vercel
 on: [push]
 jobs:
-  vercel: 
+  deploy: 
     runs-on: ubuntu-latest
+    name: "Deploy python function to vercel"
     steps:
       - uses: actions/checkout@v2
-      # deploy app to vercel
-      - name: deploy function to vercel      
-        uses: amondnet/vercel-action@v20
+      - uses: actions/setup-node@v1
         with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          vercel-args: '--prod'
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID}}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}} 
+          node-version: '14'
+          registry-url: https://registry.npmjs.org/
+      - name: "Deploy to Vercel"
+        run: |
+             npx vercel --token ${VERCEL_TOKEN} --prod
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
