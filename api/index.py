@@ -9,7 +9,7 @@ class handler(BaseHTTPRequestHandler):
     def do_POST(self):
         s = self.path
         print("this is path ",s.headers.get('Cookie'))
-        print("http cookie", SimpleCookie(os.environ["HTTP_COOKIE"])
+        print("http cookie", SimpleCookie(os.environ["HTTP_COOKIE"]))
 
         cookies = SimpleCookie(self.headers.get('Cookie'))
         print("cookie",str(cookies))
