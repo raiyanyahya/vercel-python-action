@@ -6,7 +6,7 @@ import logging
 from http.cookies import SimpleCookie
 class handler(BaseHTTPRequestHandler):
 
-    def do_GET(self):
+    def do_POST(self):
         s = self.path
         self.send_response(200)
         cookies = SimpleCookie(self.headers.get('Cookie'))
