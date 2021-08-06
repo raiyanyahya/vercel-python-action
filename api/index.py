@@ -21,5 +21,5 @@ class handler(BaseHTTPRequestHandler):
         self.end_headers()
         myenv = os.getenv('MYENV')
         message = {"a": "b" }
-        self.wfile.write(str(message).encode())
+        self.wfile.write(str(message).encode(encoding='utf_8'))
         return
