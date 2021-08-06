@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 from http.server import BaseHTTPRequestHandler
 import os
-import json
 import logging
 from http.cookies import SimpleCookie
 class handler(BaseHTTPRequestHandler):
@@ -24,5 +23,5 @@ class handler(BaseHTTPRequestHandler):
         self.end_headers()
         myenv = os.getenv('MYENV')
         message = {"a": "b" }
-        self.wfile.write(json.dumps({'hello': 'world', 'received': 'ok'}))
+        self.wfile.write(bytes("{\"result\": 200}", "utf-8"))
         return
