@@ -20,6 +20,6 @@ class handler(BaseHTTPRequestHandler):
         self.send_header('Content-type', 'application/json')
         self.end_headers()
         myenv = os.getenv('MYENV')
-        message = 'Hello, stranger!' + myenv
+        message = {"Hello, stranger!": myenv }
         self.wfile.write(message.encode())
         return
