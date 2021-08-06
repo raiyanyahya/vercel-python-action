@@ -9,7 +9,7 @@ class handler(BaseHTTPRequestHandler):
     def do_POST(self):
         s = self.path
         self.send_response(200)
-        cookies = SimpleCookie(self.headers.get('__Secure-next-auth.session-token'))
+        cookies = SimpleCookie(self.headers.get('Cookie'))
         print(str(cookies))
         log = logging.getLogger("my-logger")
         log.info(cookies)
