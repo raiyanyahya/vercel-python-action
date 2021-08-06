@@ -13,7 +13,10 @@ class handler(BaseHTTPRequestHandler):
         cookiestring = "\n".join(self.headers.get_all('cookie',failobj=[]))
         print("cookiestring", cookiestring)
         c = SimpleCookie()
-        c.load(cookiestring)        
+        c.load(cookiestring)
+        print("cccc",c)
+        print("value", c["__Secure-next-auth.session-token"].value)
+        
         self.send_response(200)
         self.send_header('Access-Control-Allow-Credentials', 'true')
         self.send_header('Access-Control-Allow-Origin', 'https://vercel-jwt-github-action.vercel.app')
