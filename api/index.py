@@ -21,5 +21,5 @@ class handler(BaseHTTPRequestHandler):
         self.end_headers()
         myenv = os.getenv('MYENV')
         message = {"Hello, stranger!": myenv }
-        self.wfile.write(message.encode())
+        self.wfile.write(message)
         return
