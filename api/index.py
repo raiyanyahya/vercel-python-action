@@ -3,13 +3,14 @@
 from http.server import BaseHTTPRequestHandler
 import os
 import logging
-
+from http.cookies import SimpleCookie
 class handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         s = self.path
         self.send_response(200)
-        print(str(self.headers))
+        cookies = SimpleCookie(self.headers.get('Cookie'))
+        print(str(cookies)
         log = logging.getLogger("my-logger")
         log.info(self.headers)
         self.send_header('Content-type', 'text/plain')
