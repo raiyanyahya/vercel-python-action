@@ -10,9 +10,9 @@ class handler(BaseHTTPRequestHandler):
         s = self.path
         self.send_response(200)
         cookies = SimpleCookie(self.headers.get('Cookie'))
-        print(str(cookies)
+        print(str(cookies))
         log = logging.getLogger("my-logger")
-        log.info(self.headers)
+        log.info(cookies)
         self.send_header('Content-type', 'text/plain')
         self.end_headers()
         myenv = os.getenv('MYENV')
