@@ -9,11 +9,11 @@ class handler(BaseHTTPRequestHandler):
     def do_POST(self):
         s = self.path
         cookies = SimpleCookie(self.headers.get('Cookie'))
-        print(str(cookies))
-        print(self.headers)
+        print("cookie",str(cookies))
+        print("header",self.headers)
         log = logging.getLogger("my-logger")
-        log.info(cookies)
-        log.info(self.headers)
+        log.info("cookie",cookies)
+        log.info("header",self.headers)
         self.send_response(200)
         self.send_header('Access-Control-Allow-Credentials', 'true')
         self.send_header('Access-Control-Allow-Origin', 'https://vercel-jwt-github-action.vercel.app')
