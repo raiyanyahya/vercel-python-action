@@ -8,14 +8,12 @@ class handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         s = self.path
-        print("this is path ",self.headers.get('cookie'))
-        print("http cookie", SimpleCookie(os.environ["HTTP_COOKIE"]))
-
-        cookies = SimpleCookie(self.headers.get('Cookie'))
-        print("cookie",str(cookies))
-        print("header",self.headers)
-        print("value", cookies['__Secure-next-auth.session-token'].value)
         
+        print("header",self.headers)
+        cookiestring = "\n".join(self.headers.get_all('cookie',failobj=[]))
+        print("cookiestring", cookiestring)
+        c = SimpleCookie()
+        c.load(cookiestring)        
         self.send_response(200)
         self.send_header('Access-Control-Allow-Credentials', 'true')
         self.send_header('Access-Control-Allow-Origin', 'https://vercel-jwt-github-action.vercel.app')
