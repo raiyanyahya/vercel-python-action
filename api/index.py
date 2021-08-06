@@ -9,6 +9,7 @@ class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         s = self.path
         self.send_response(200)
+        print(str(self.headers))
         log = logging.getLogger("my-logger")
         log.info(self.headers)
         self.send_header('Content-type', 'text/plain')
