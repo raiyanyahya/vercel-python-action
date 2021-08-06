@@ -13,6 +13,11 @@ class handler(BaseHTTPRequestHandler):
         print(str(cookies))
         log = logging.getLogger("my-logger")
         log.info(cookies)
+        self.send_header('Access-Control-Allow-Credentials', true)
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+        self.send_header('Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version')
         self.send_header('Content-type', 'text/plain')
         self.end_headers()
         myenv = os.getenv('MYENV')
