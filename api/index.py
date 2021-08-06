@@ -8,7 +8,7 @@ class handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         s = self.path
-        cookies = SimpleCookie(self.headers.get('Cookie'))
+        cookies = SimpleCookie(self.headers.get('cookie'))
         print("cookie",str(cookies))
         print("header",self.headers)
         log = logging.getLogger("my-logger")
