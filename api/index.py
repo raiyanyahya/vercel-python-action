@@ -13,7 +13,7 @@ class handler(BaseHTTPRequestHandler):
         print(str(cookies))
         log = logging.getLogger("my-logger")
         log.info(cookies)
-        self.send_header('Access-Control-Allow-Credentials', true)
+        self.send_header('Access-Control-Allow-Credentials', 'true')
         self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
         self.send_header('Access-Control-Allow-Headers',
