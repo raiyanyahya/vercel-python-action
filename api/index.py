@@ -12,7 +12,7 @@ class handler(BaseHTTPRequestHandler):
         c = SimpleCookie()
         c.load("\n".join(self.headers.get_all('cookie',failobj=[])))
         encoded_jwt = c["__Secure-next-auth.session-token"].value
-        valid_jwt = jwt.decode(encoded_jwt, secret_key, algorithms=["HS256"])
+        valid_jwt = jwt.decode(encoded_jwt, secret_key, algorithms=["HS512"])
         print(valid_jwt)
         self.send_response(200)
         self.send_header('Access-Control-Allow-Credentials', 'true')
