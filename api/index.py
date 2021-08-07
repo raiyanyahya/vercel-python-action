@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from http.server import BaseHTTPRequestHandler
 import os
-import logging
+import jwt
 from http.cookies import SimpleCookie
 
 secret_key = os.getenv('SECRET')
