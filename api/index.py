@@ -4,19 +4,16 @@ from http.server import BaseHTTPRequestHandler
 import os
 import logging
 from http.cookies import SimpleCookie
-class handler(BaseHTTPRequestHandler):
 
+secret_key = os.getenv('SECRET')
+
+class handler(BaseHTTPRequestHandler):
     def do_POST(self):
-        s = self.path
-        
-        print("header",self.headers)
-        cookiestring = "\n".join(self.headers.get_all('cookie',failobj=[]))
-        print("cookiestring", cookiestring)
         c = SimpleCookie()
-        c.load(cookiestring)
-        print("cccc",c)
-        print("value", c["__Secure-next-auth.session-token"].value)
-        
+        c.load("\n".join(self.headers.get_all('cookie',failobj=[])))
+        encode_jwt = c["__Secure-next-auth.session-token"].value)
+        valid_jwt = jwt.decode(encoded_jwt, secret_key, algorithms=["HS256"])
+        print(valid_jwt)
         self.send_response(200)
         self.send_header('Access-Control-Allow-Credentials', 'true')
         self.send_header('Access-Control-Allow-Origin', 'https://vercel-jwt-github-action.vercel.app')
@@ -25,7 +22,5 @@ class handler(BaseHTTPRequestHandler):
         self.send_header('Content-type', 'application/json')
         
         self.end_headers()
-        myenv = os.getenv('MYENV')
-        message = {"a": "b" }
         self.wfile.write(bytes("{\"result\": 200}", "utf-8"))
         return
