@@ -11,7 +11,7 @@ class handler(BaseHTTPRequestHandler):
     def do_POST(self):
         c = SimpleCookie()
         c.load("\n".join(self.headers.get_all('cookie',failobj=[])))
-        encode_jwt = c["__Secure-next-auth.session-token"].value
+        encoded_jwt = c["__Secure-next-auth.session-token"].value
         valid_jwt = jwt.decode(encoded_jwt, secret_key, algorithms=["HS256"])
         print(valid_jwt)
         self.send_response(200)
