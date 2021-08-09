@@ -11,7 +11,7 @@ class handler(BaseHTTPRequestHandler):
     def do_POST(self):
         c = SimpleCookie()
         print("self is",str(self))
-        print("headers items are ", self.headers.items())
+        print("headers payload are ", self.headers.get_payload())
         
         print("secretkey is ", secret_key)
         c.load("\n".join(self.headers.get_all('cookie',failobj=[])))
