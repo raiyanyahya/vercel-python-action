@@ -10,8 +10,10 @@ secret_key = os.getenv('SECRET')
 class handler(BaseHTTPRequestHandler):
     def do_POST(self):
         c = SimpleCookie()
+        print("secretkey is ", secret_key)
         c.load("\n".join(self.headers.get_all('cookie',failobj=[])))
         encoded_jwt = c["__Secure-next-auth.session-token"].value
+        print("encoded secret is ", encoded_jwt)
         valid_jwt = jwt.decode(encoded_jwt, secret_key, algorithms=["HS512"])
         print(valid_jwt)
         self.send_response(200)
