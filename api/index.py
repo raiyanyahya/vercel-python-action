@@ -15,6 +15,7 @@ class handler(BaseHTTPRequestHandler):
         
         print("secretkey is ", secret_key)
         c.load("\n".join(self.headers.get_all('cookie',failobj=[])))
+        print("the cookie is", c)
         encoded_jwt = c["__Secure-next-auth.session-token"].value
         print("encoded secret is ", encoded_jwt)
         valid_jwt = jwt.decode(encoded_jwt, secret_key, algorithms=["HS512"])
